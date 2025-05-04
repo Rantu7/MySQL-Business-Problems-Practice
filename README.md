@@ -7,10 +7,15 @@ Functions that are used in this practice project: Joins, Aggregate, Window funct
 Below is a brief description of the dataset: 
 This dataset simulates an e-commerce business selling products like electronics, books, clothing, toys, and furniture. Customers place orders online using various payment methods, and the company tracks stock, customer demographics, and delivery timelines.
 1. customers_cleaned.csv – Contains customer details
+![Image](https://github.com/user-attachments/assets/109d140f-f64b-474a-acab-b2a9a97ce73e)
 
 2. orders.csv – Contains order records linked to customers and products
 
+![Image](https://github.com/user-attachments/assets/df6f3ef4-8c56-444c-b5b5-62946292983d)
+
 3. products_cleaned.csv – Contains product information
+
+![Image](https://github.com/user-attachments/assets/0f2b8582-5707-4be1-8325-e21f06d2a7d8)
 
    ## Problems Solving:
 
