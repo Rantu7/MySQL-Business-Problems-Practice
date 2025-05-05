@@ -2,7 +2,7 @@
 
 ## Objective
 The objective of the Practice project is to solve business problems by using MySQL. It attempts to solve  problems using Basic to advanced Mysql functions and answer business queries to make data driven decisions and also hone SQL programming skills.
-Functions that are used in this practice project: Joins, Aggregate, Window functions such as row_number, Rank, Dense_rank, Subquery etc.
+Functions that are used in this practice project: Joins, Aggregate, Case, Subquery, Window functions such as row_number, Rank, Dense_rank, LAG  etc.
 
 Below is a brief description of the dataset: 
 This dataset simulates an e-commerce business selling products like electronics, books, clothing, toys, and furniture. Customers place orders online using various payment methods, and the company tracks stock, customer demographics, and delivery timelines.
@@ -182,7 +182,33 @@ SELECT
 FROM cte;
 ```
 
+##  Analyze month over month performance by finding the percentage change in revenue between the current & previous month
 
+```mysql
+SELECT 
+    months, 
+    current_revenue, 
+    CONCAT(ROUND((current_revenue - previous_month) / previous_month * 100, 2),'%') AS percent_change
+FROM (
+    SELECT  
+        MONTH(order_date) AS months,
+        ROUND(SUM(p.price * o.quantity), 2) AS current_revenue,
+        ROUND(
+            LAG(SUM(p.price * o.quantity)) OVER (ORDER BY MONTH(order_date)), 
+            2
+        ) AS previous_month
+    FROM 
+        orders o
+    JOIN 
+        products_cleaned p ON o.product_id = p.product_id
+    WHERE 
+        status = 'Completed'
+    GROUP BY 
+        MONTH(order_date)
+    ORDER BY 
+        MONTH(order_date)
+) subquery;
+```
 
 
 
